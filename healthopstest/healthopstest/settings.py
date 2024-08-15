@@ -37,7 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+######################################
+# 1. Included HOp Apps below
+# 2. 
+###################################### 
+    'patients.apps.PatientsConfig',
+    'appointments.apps.AppointmentsConfig',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -105,7 +113,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+
+
+######################################
+# 1. Updated time zone
+# 2. 
+######################################
+TIME_ZONE = 'Melbourne'
 
 USE_I18N = True
 

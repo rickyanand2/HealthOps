@@ -13,10 +13,46 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+
+
+######################################
+# 1. Imported path 
+# 2. Added Path and includes for Apps 
+# 
+######################################    
+    
 """
 from django.contrib import admin
 from django.urls import path
 
+
+# Use include() to add paths from Hop applications
+from django.urls import include
+
+# Add URL maps to redirect the base URL to our application
+from django.views.generic import RedirectView
+
+
+# Use static() to add URL mapping to serve static files during development (only)
+from django.conf import settings
+from django.conf.urls.static import static
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
+
+# Included new apps for URL patterns | RA 
+urlpatterns += [
+    path('patients/', include('patients.urls')),
+    path('appointments/', include('appointments.urls')),
+    path('dashboard/', include('dashboard.urls')),
+]
+
+urlpatterns += [
+    path('', RedirectView.as_view(url='dashboard/', permanent=True)),
+]
+
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
